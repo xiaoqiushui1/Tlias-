@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhjvm.java.mapper.StudentMapper">
+    <delete id="delete">
+        delete from student s where s.id in
+  <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+  </foreach>
+
+
+    </delete>
+
+
+    <select id="list" resultType="hhjvm.java.pojo.Student">
+        select
+        s.*,
+        c.name as clazzName
+        from student s
+        left join clazz c on s.clazz_id = c.id
+        <where>
+            <!-- 姓名 -->
+            <if test="name != null and name != ''">
+                and s.name like concat('%', #{name}, '%')
+            </if>
+            <!-- 学历 -->
+            <if test="degree != null">
+                and s.degree = #{degree}
+            </if>
+            <!-- 班级 -->
+            <if test="clazzId != null">
+                and s.clazz_id = #{clazzId}
+            </if>
+        </where>
+
+        order by s.update_time desc
+
+
+
+
+
+
+    </select>
+</mapper>

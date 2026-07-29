@@ -1,0 +1,37 @@
+spring:
+   # 应用名称
+   application:
+     name: tlias-web-management
+     # 数据库
+   datasource:
+     type: com.zaxxer.hikari.HikariDataSource
+     url: jdbc:mysql://localhost:3306/tlias
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     username: root
+     password: 1234
+#     前端请求的文件大小设置
+   servlet:
+     multipart:
+#       单个文件最大10MB
+       max-file-size: 10MB
+       # 整个请求的最大文件大小
+       max-request-size: 100MB
+
+       # mybatis的相关配置
+mybatis:
+   mapper-locations: classpath:mapper/*.xml
+   configuration:
+     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+     map-underscore-to-camel-case: true
+     #需要满足xxx_abc=xxx_Abc的类型。
+# 日志配置
+#事务日志单独debug可以看得到步骤
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+#    阿里云OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-ai722
+    region: cn-beijing

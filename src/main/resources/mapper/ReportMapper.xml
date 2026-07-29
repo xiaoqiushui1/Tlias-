@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhjvm.java.mapper.ReportMapper">
+
+    <select id="EmpCountjobnum" resultType="java.util.Map">
+        select
+            (case
+                 when job = 1 then '班主任'
+                 when job = 2 then '讲师'
+                 when job = 3 then '学工主管'
+                 when job = 4 then '教研主管'
+                 when job = 5 then '咨询师'
+                 else '其他'
+                end) pos,
+            count(*) num
+        from emp
+        group by job
+        order by num;
+    </select>
+    <select id="EmpCountgender" resultType="java.util.Map">
+    select  if(emp.gender=1,'男性员工','女性员工')name,count(*)value from emp group by gender;
+    </select>
+    <select id="EmpCountdegree" resultType="java.util.Map">
+        select  (case
+                     when student.degree =1 then'初中'
+                     when student.degree =2 then '高中'
+                     when student.degree =3 then'大专'
+                     when student.degree = 4 then '本科'
+                     when student.degree = 5 then '硕士'
+                     when student.degree =6 then '博士'
+                     else '其他'
+            end)  name ,
+                count( *) value
+        from student
+        group by degree
+        order by value;
+    </select>
+    <select id="getstudnetDate" resultType="java.util.Map">
+        SELECT
+            c.name AS Name,
+            COUNT(s.id) AS Num
+        FROM clazz c
+                 LEFT JOIN student s ON c.id = s.clazz_id
+        GROUP BY c.id
+        ORDER BY Num DESC
+    </select>
+</mapper>
