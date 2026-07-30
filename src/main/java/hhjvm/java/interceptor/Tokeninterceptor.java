@@ -8,7 +8,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 @Component
-public class Tokeninterceptor implements HandlerInterceptor {
+public class Tokeninterceptor implements HandlerInterceptor {//另一个拦截器，但是要配置拦截器.配置filter或者Interceptor任意一个即可
+    //@Autowired
+//private Tokeninterceptor tokeninterceptor;
+    //    public void addInterceptors(InterceptorRegistry registry) {//注册拦截器
+//        registry.addInterceptor(tokeninterceptor)
+//                .addPathPatterns("/**")//拦截所有请求
+//                .excludePathPatterns("/login");//不拦截的请求
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1.获取请求路径

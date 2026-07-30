@@ -7,7 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.Map;
 
-public class JwtUtils {
+public class JwtUtils {//jwt登录操作
 
     private static final String signKey = "aXRoZWltYQ==";//密钥
     private static final long EXPIRATION_TIME = 12 * 60 * 60 * 1000; // 12小时 1 usage
