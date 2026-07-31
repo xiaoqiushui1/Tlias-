@@ -17,7 +17,7 @@ public class OperationLogAspect {
     @Autowired
     private OperateLogMapper operateLogMapper;
 
-    @Around("@annotation(hhjvm.java.anno.Log)")
+    @Around("@annotation(hhjvm.java.anno.Log)")//匹配所有使用Log注解(自定义)的方法
     public Object logOperation(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();//记录开始时间
         // 执行目标方法
