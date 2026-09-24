@@ -44,7 +44,7 @@ public interface EmpMapper {
     //根据id修改员工基本信息
     void updateById(Emp emp);
 @Select("select * from emp ")
-    List<Emp> alist();
+    List<Emp> alist();//分页查询,自动增加分页参数
 //统计部门下是否有员工，报异常
     @Select(" SELECT COUNT(*) FROM emp WHERE dept_id = #{Id}")
     Long countByDeptId(Integer id);

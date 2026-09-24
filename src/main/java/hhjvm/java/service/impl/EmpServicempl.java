@@ -25,8 +25,6 @@ public class EmpServicempl implements EmpService {
     @Override
     public List<Emp> list() {
         List<Emp> empList= empMapper.alist();
-
-
         return empList ;
     }
 
@@ -62,7 +60,7 @@ private EmpMapper empMapper;
 @Override
 public PageResult<Emp> page(EmpQueryParam empQueryParam) {
     //1.调用mapper，查询总记录数
-    PageHelper.startPage(empQueryParam.getPage(),empQueryParam.getPageSize());//对接下来的第一条sql查询拦截
+    PageHelper.startPage(empQueryParam.getPage(),empQueryParam.getPageSize());//对接下来的第一条sql查询拦截,并参加对应分页限制参数
     //2.调用mapper，查询结果列表
     List<Emp> empLIst= empMapper.list(empQueryParam);//已经进行分页了
     //3.封装结果PageResult
